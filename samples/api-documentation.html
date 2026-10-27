@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A beginner-friendly REST API guide covering endpoints, HTTP methods, requests, responses, and status codes.">
+  <title>REST APIs | Vignesh S.</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<main class="article-shell">
+  <a class="back" href="../index.html#work">← Back to Portfolio</a>
+  <p class="eyebrow">SOFTWARE DOCUMENTATION</p>
+  <h1>A Beginner's Guide to REST APIs</h1>
+  <p class="dek">Learn how applications communicate through HTTP requests and responses.</p>
+  <p><strong>Audience:</strong> Beginner developers and technical learners</p>
+
+  <h2>Overview</h2>
+  <p>An application programming interface (API) defines how software systems communicate. A REST-style API commonly exposes resources through URLs and uses HTTP methods to describe operations on those resources.</p>
+  <p>For example, a book-management application might let a client retrieve a book, create a new record, update information, or request deletion through an API.</p>
+
+  <h2>Key API concepts</h2>
+  <ul>
+    <li><strong>Endpoint:</strong> The URL used to access a resource or operation.</li>
+    <li><strong>HTTP method:</strong> Indicates the intended action.</li>
+    <li><strong>Headers:</strong> Provide metadata such as content type and authorization information.</li>
+    <li><strong>Request body:</strong> Contains data submitted with a request when required.</li>
+    <li><strong>Response:</strong> Contains the result returned by the server.</li>
+    <li><strong>Status code:</strong> Indicates the general outcome of the request.</li>
+  </ul>
+
+  <h2>Common HTTP methods</h2>
+  <ul>
+    <li><code>GET</code> — retrieve a resource.</li>
+    <li><code>POST</code> — submit data, often to create a resource.</li>
+    <li><code>PUT</code> — replace a resource representation.</li>
+    <li><code>PATCH</code> — partially update a resource.</li>
+    <li><code>DELETE</code> — request deletion of a resource.</li>
+  </ul>
+
+  <h2>Example: Retrieve a book</h2>
+  <p>The following illustrative request retrieves a book with ID 42. The example domain is reserved for documentation and is not a live API.</p>
+
+  <pre><code>GET https://api.example.com/books/42
+Accept: application/json</code></pre>
+
+  <p>A successful response might return status code <code>200 OK</code> and a JSON object such as:</p>
+
+  <pre><code>{
+  "id": 42,
+  "title": "A Short Guide to APIs",
+  "available": true
+}</code></pre>
+
+  <p>The client can read the response fields and display the book's details in its interface.</p>
+
+  <h2>Common HTTP status codes</h2>
+  <ul>
+    <li><code>200 OK</code> — the request succeeded.</li>
+    <li><code>201 Created</code> — a resource was created successfully.</li>
+    <li><code>400 Bad Request</code> — the request contains invalid input or is malformed.</li>
+    <li><code>401 Unauthorized</code> — valid authentication credentials are missing or not accepted.</li>
+    <li><code>403 Forbidden</code> — the server refuses the requested access.</li>
+    <li><code>404 Not Found</code> — the requested resource could not be found.</li>
+    <li><code>500 Internal Server Error</code> — the server encountered an unexpected condition.</li>
+  </ul>
+
+  <h2>Authentication and security</h2>
+  <p>Some APIs require authentication before a client can access protected resources. Depending on the API, this may involve an access token or another supported credential mechanism.</p>
+  <p>Follow the API provider's authentication instructions, use HTTPS, and avoid exposing secrets in source code, public repositories, or logs. Access permissions should be limited to what the application needs.</p>
+
+  <h2>API documentation best practices</h2>
+  <ol>
+    <li>Explain the purpose of each endpoint.</li>
+    <li>Document required parameters, headers, and request bodies.</li>
+    <li>Provide valid request and response examples.</li>
+    <li>Describe expected status codes and common errors.</li>
+    <li>Document authentication requirements and relevant security considerations.</li>
+    <li>Keep examples aligned with the actual API contract.</li>
+  </ol>
+
+  <h2>Conclusion</h2>
+  <p>REST APIs provide a common approach to communication between software systems. Understanding endpoints, HTTP methods, request formats, and status codes gives developers a useful foundation for integrating services and troubleshooting problems.</p>
+
+  <div class="article-footer">Original portfolio sample. The endpoint and JSON response are illustrative examples, not a live service or client project.</div>
+</main>
+</body>
+</html>
