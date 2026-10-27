@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly guide to REST API integration, authentication, requests, responses, and error handling.">
+  <title>A Step-by-Step Guide to REST API Integration</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; line-height: 1.8; color: #263247; background: #f4f7fb; }
+    header { background: #172033; color: white; padding: 45px 20px; }
+    header div, main, footer { max-width: 850px; margin: auto; }
+    header p { color: #c5d0e4; }
+    main { background: white; padding: 35px; margin: 30px auto; border-radius: 16px; }
+    h1, h2 { line-height: 1.3; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); }
+    h2 { margin-top: 35px; color: #2457df; }
+    code, pre { background: #eef2f8; border-radius: 6px; }
+    code { padding: 2px 5px; }
+    pre { padding: 18px; overflow-x: auto; line-height: 1.6; }
+    .callout { background: #edf3ff; border-left: 4px solid #2457df; padding: 15px; }
+    a { color: #2457df; }
+    footer { padding: 10px 20px 30px; color: #647086; }
+  </style>
+</head>
+<body>
+<header>
+  <div>
+    <p>SOFTWARE DOCUMENTATION · PORTFOLIO SAMPLE</p>
+    <h1>A Step-by-Step Guide to REST API Integration</h1>
+    <p>Understand endpoints, authentication, requests, responses, and common integration errors.</p>
+  </div>
+</header>
+<main>
+  <p><strong>Audience:</strong> Beginner developers and technical teams</p>
+  <p><strong>Purpose:</strong> Explain the core steps involved in integrating a REST API.</p>
+
+  <h2>Introduction</h2>
+  <p>Applications often need to exchange information with other systems. A REST API provides a structured way for one application to request data or perform an action in another system over HTTP.</p>
+  <p>For example, an online store might use a payment provider's API to create a payment or check its status. Successful integration requires more than sending a request: developers must understand authentication, data formats, response codes, and error handling.</p>
+
+  <h2>1. Understand the API endpoint</h2>
+  <p>An endpoint is a URL used to access a particular resource or operation. An API reference typically describes the endpoint, supported HTTP methods, required parameters, and possible responses.</p>
+  <pre>GET https://api.example.com/v1/products</pre>
+  <p>This illustrative endpoint represents a request to retrieve products. The actual URL and supported operations depend on the API provider.</p>
+
+  <h2>2. Review authentication requirements</h2>
+  <p>Many APIs require credentials to verify the identity and permissions of the calling application. Common approaches include API keys and OAuth 2.0 access tokens.</p>
+  <ul>
+    <li>Read the provider's authentication instructions.</li>
+    <li>Store secrets in environment variables or an approved secrets manager.</li>
+    <li>Never commit real credentials to a public repository.</li>
+    <li>Use only the permissions needed for the integration.</li>
+  </ul>
+
+  <h2>3. Send a request</h2>
+  <p>HTTP methods describe the intended operation. GET commonly retrieves data, POST submits data, PUT replaces a resource, PATCH updates part of a resource, and DELETE requests removal.</p>
+  <p>The following example uses placeholder values and the Fetch API:</p>
+  <pre><code>const response = await fetch(
+  "https://api.example.com/v1/products",
+  {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "Authorization": `Bearer ${accessToken}`
+    }
+  }
+);
+
+if (!response.ok) {
+  throw new Error(`Request failed: ${response.status}`);
+}
+
+const products = await response.json();
+console.log(products);</code></pre>
+  <p>This example assumes that <code>accessToken</code> has already been obtained securely. It is illustrative and must be adapted to the provider's documentation.</p>
+
+  <h2>4. Understand the response</h2>
+  <p>An API response generally contains an HTTP status code and may contain a response body. JSON is a common format for structured data.</p>
+  <ul>
+    <li><strong>200 OK:</strong> The request succeeded.</li>
+    <li><strong>201 Created:</strong> A resource was created successfully.</li>
+    <li><strong>400 Bad Request:</strong> The request may contain invalid data.</li>
+    <li><strong>401 Unauthorized:</strong> Authentication is missing or invalid.</li>
+    <li><strong>403 Forbidden:</strong> The caller does not have permission.</li>
+    <li><strong>404 Not Found:</strong> The requested resource was not found.</li>
+    <li><strong>429 Too Many Requests:</strong> A rate limit may have been exceeded.</li>
+    <li><strong>500-level errors:</strong> The server encountered an error.</li>
+  </ul>
+
+  <h2>5. Handle errors and test the integration</h2>
+  <p>Reliable integrations account for network failures, unexpected response formats, expired credentials, and service limits. Log useful diagnostic information without exposing passwords, tokens, or sensitive personal data.</p>
+  <p>Test successful requests as well as invalid inputs, missing permissions, timeouts, and rate-limit responses. Follow the API provider's retry guidance rather than retrying every error automatically.</p>
+
+  <h2>Integration checklist</h2>
+  <ul>
+    <li>Read the API documentation and usage limits.</li>
+    <li>Confirm endpoint URLs, HTTP methods, and required fields.</li>
+    <li>Configure authentication securely.</li>
+    <li>Validate response status codes and data.</li>
+    <li>Implement appropriate error handling and tests.</li>
+  </ul>
+
+  <div class="callout"><strong>Key takeaway:</strong> A maintainable API integration combines correct requests, secure credentials, clear error handling, and thorough testing.</div>
+  <p><a href="../index.html">← Back to portfolio</a></p>
+</main>
+<footer>© Vignesh S · portfolio demonstration</footer>
+</body>
+</html>
